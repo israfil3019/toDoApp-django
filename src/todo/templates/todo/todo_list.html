@@ -1,0 +1,15 @@
+{% extends "base.html" %} 
+
+{% block title %}
+Todo List
+{% endblock title %}
+    
+    
+{% block content %}
+<ul>
+    {% for todo in todos %}
+        <li>{{ todo }}</li>
+    {% endfor %}
+</ul>        
+
+{% endblock content %}
