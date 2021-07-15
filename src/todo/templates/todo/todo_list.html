@@ -10,9 +10,13 @@ Todo List
 <ul>
   {% for todo in todos %}
     {% if todo.completed %}
-    <li><del>{{todo}}</del></li>
+    <a href="{% url 'detail' todo.id %}">
+      <del><li style="font-size: 40px;">{{todo}}</li></del>
+    </a>
     {% else %}
-    <li>{{todo}}</li>
+    <a href="{% url 'detail' todo.id %}">
+      <li style="font-size: 40px;">{{todo}}</li>
+    </a>
     {% endif %}
     {% endfor  %}
 </ul>        
