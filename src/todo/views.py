@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Todo
-from .forms import TodoForm
+from .forms import TodoForm, UpdateForm
 
 
 def home(request):
@@ -14,6 +14,7 @@ def todo_list(request):
     }
     return render(request, "todo/todo_list.html", context)
 
+
 def todo_add(request):
     form = TodoForm()
     if request.method == "POST":
@@ -25,4 +26,19 @@ def todo_add(request):
         'form':form,
     }
     return render(request, "todo/todo_add.html", context)
+
+
+def todo_update(request, id):
+    todo = get_object_or_404(Todo, id=id)
+    form = UpdateForm(instance=todo)
+    if request.method == "POST":
+        form = UpdateForm(request.POST, instance=todo)
+        if form.is_valid():
+            form.save()
+            return redirect("list")
+    context = {
+        'form': form,
+        'todo': todo,
+    }
+    return render(request, "todo/todo_update.html", context)
 
