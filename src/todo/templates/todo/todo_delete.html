@@ -1,14 +1,13 @@
-{% extends "base.html" %} 
-{% block title %}
-    Todo Delete
-{% endblock title %}
-    
-{% block content %}
-    <h2>Delete Todo</h2>
-    <form action="" method="post">
-        {% csrf_token %}
-        Are you sure to delete {{todo}}
-        <input type="submit" value="Yes">
-        <a href="{% url 'list' %}">no</a>
-    </form>
+{% extends "base.html" %} {% block title %} Todo Delete {% endblock title %} 
+
+{%block content %}
+<h2>Delete Todo</h2>
+<form action="" method="post">
+  {% csrf_token %} 
+  Are you sure to delete {{todo}}
+  <input type="submit" value="Yes" />
+  <a href="{% url 'list' %}">
+    <button type="button">No</button>
+  </a>
+</form>
 {% endblock content %}

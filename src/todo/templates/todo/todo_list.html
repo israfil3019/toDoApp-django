@@ -1,26 +1,31 @@
 {% extends "base.html" %} 
 
 {% block title %}
-Todo List
+Todo
 {% endblock title %}
     
     
+
 {% block content %}
-<h2>Todo List</h2>
-<ul>
-  {% for todo in todos %}
+ <h2>Todo List</h2>
+ <form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Add">
+</form>
+
+ <ul>
+    {% for todo in todos %}
     {% if todo.completed %}
     <a href="{% url 'detail' todo.id %}">
-      <del><li style="font-size: 40px;">{{todo}}</li></del>
+    <li><del>{{todo}}</del></li>
     </a>
     {% else %}
     <a href="{% url 'detail' todo.id %}">
-      <li style="font-size: 40px;">{{todo}}</li>
+    <li>{{todo}}</li>
     </a>
     {% endif %}
     {% endfor  %}
-</ul>        
-<a href="{% url 'add' %}">
-  <button>Add Page</button>
-</a>
+</ul>
 {% endblock content %}
+    
