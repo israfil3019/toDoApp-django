@@ -11,5 +11,7 @@ Todo List
         <li>{{ todo }}</li>
     {% endfor %}
 </ul>        
-
+<a href="{% url 'add' %}">
+  <button>Add Page</button>
+</a>
 {% endblock content %}
